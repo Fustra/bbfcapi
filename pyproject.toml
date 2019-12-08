@@ -10,16 +10,20 @@ license = "AGPL-3.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+aiohttp = {version = "^3.6", extras = ["speedups"]}
+beautifulsoup4 = "^4.8"
 
 [tool.poetry.dev-dependencies]
 # Checks
+pyflakes = "^2.1"
+bandit = "^1.6"
+safety = "^1.8"
 black = {version = "=19.10b0", allows-prereleases = true}
 isort = "^4.3"
-bandit = "^1.6"
-pyflakes = "^2.1"
-safety = "^1.8"
 # Tests
 pytest = "^3.0"
+pytest-asyncio = "^0.10.0"
+aioresponses = "^0.6.1"
 
 [tool.black]
 target-version = ['py38']

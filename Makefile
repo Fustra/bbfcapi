@@ -13,10 +13,10 @@ help: Makefile
 ## check:	Run basic checks.
 .PHONY: check
 check:
-	@echo -e "${COLOR_BLUE}=== Poetry ===\n${NO_COLOR}"
+	@echo -e "${COLOR_BLUE}=== Correctness: Poetry ===\n${NO_COLOR}"
 	@poetry --quiet check
 
-	@echo -e "${COLOR_BLUE}\n=== Pyflakes ===\n${NO_COLOR}"
+	@echo -e "${COLOR_BLUE}\n=== Correctness: Pyflakes ===\n${NO_COLOR}"
 	@poetry run pyflakes bbfcapi tests
 
 	@echo -e "${COLOR_BLUE}\n=== Security: Bandit ===\n${NO_COLOR}"
@@ -25,10 +25,10 @@ check:
 	@echo -e "${COLOR_BLUE}\n=== Security: Safety ===\n${NO_COLOR}"
 	@poetry run safety check --bare
 
-	@echo -e "${COLOR_BLUE}\n=== Black ===\n${NO_COLOR}"
+	@echo -e "${COLOR_BLUE}\n=== Style: Black ===\n${NO_COLOR}"
 	@poetry run black --quiet --check bbfcapi tests
 
-	@echo -e "${COLOR_BLUE}\n=== isort ===\n${NO_COLOR}"
+	@echo -e "${COLOR_BLUE}\n=== Style: isort ===\n${NO_COLOR}"
 	@poetry run isort --check --recursive bbfcapi tests
 
 	@echo -e "\n${COLOR_GREEN}All Good!${NO_COLOR}"
