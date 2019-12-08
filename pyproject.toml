@@ -12,6 +12,8 @@ license = "AGPL-3.0"
 python = "^3.8"
 aiohttp = {version = "^3.6", extras = ["speedups"]}
 beautifulsoup4 = "^4.8"
+fastapi = "^0.44.1"
+uvicorn = "^0.10.8"
 
 [tool.poetry.dev-dependencies]
 # Checks
