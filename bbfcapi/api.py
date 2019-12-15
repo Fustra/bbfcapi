@@ -1,10 +1,19 @@
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from bbfcapi.client import search
 from bbfcapi.parser import top_search_result
 from bbfcapi.types import Film
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET"],
+    allow_headers=[],
+    allow_credentials=False,
+)
 
 
 @app.get("/", response_model=Film)
