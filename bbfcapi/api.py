@@ -18,6 +18,8 @@ app.add_middleware(
 
 @app.get("/", response_model=Film)
 async def root(title: str, year: int):
+    # TODO: Handle no films found for that year
+    # TODO: Year optional?
     page = await search(title, year)
     return top_search_result(page)
 
