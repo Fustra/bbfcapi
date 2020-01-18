@@ -8,8 +8,13 @@ from bbfcapi.types import AgeRating, Film
 
 def parse_top_search_result(content: bytes) -> Optional[Film]:
     soup = BeautifulSoup(content, "html.parser")
+
+    film_title = soup.select_one("h3.title > a")
+    if film_title is None:
+        return None
+
     return Film(
-        title=soup.select_one("h3.title > a").string.strip(),
+        title=film_title.string.strip(),
         year=int(
             soup.select_one("span.title-additional-info").string.strip().strip("()")
         ),

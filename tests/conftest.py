@@ -31,6 +31,11 @@ def data_search_interstellar():
 
 
 @pytest.fixture
+def data_search_no_results():
+    return (Path(__file__) / "../data/search_no_results.html").resolve().read_bytes()
+
+
+@pytest.fixture
 def mock_aioresponses():
     with aioresponses() as m:
         yield m
@@ -41,3 +46,8 @@ def mock_search_interstellar(data_search_interstellar, mock_aioresponses):
     mock_aioresponses.get(
         search_url("interstellar", 2014), body=data_search_interstellar
     )
+
+
+@pytest.fixture
+def mock_search_no_results(data_search_no_results, mock_aioresponses):
+    mock_aioresponses.get(search_url("no-film", 1900), body=data_search_no_results)

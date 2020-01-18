@@ -7,7 +7,7 @@ def test_client():
     return TestClient(app)
 
 
-def test_root_returns_http_200(mock_search_interstellar):
+def test_root_returns_http_200_with_a_result(mock_search_interstellar):
     response = test_client().get("/?title=interstellar&year=2014")
     assert response.status_code == 200
     assert response.json() == {
@@ -15,6 +15,12 @@ def test_root_returns_http_200(mock_search_interstellar):
         "year": 2014,
         "age_rating": "12",
     }
+
+
+def test_root_returns_http_204_with_no_results(mock_search_no_results):
+    response = test_client().get("/?title=no-film&year=1900")
+    assert response.status_code == 204
+    assert response.content == b""
 
 
 def test_root_returns_cors_headers(mock_search_interstellar):

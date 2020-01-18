@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
+from starlette.responses import Response
+from starlette.status import HTTP_204_NO_CONTENT
 
 from bbfcapi.apilib import top_search_result
 from bbfcapi.types import Film
@@ -17,7 +19,11 @@ app.add_middleware(
 
 @app.get("/", response_model=Film)
 async def root(title: str, year: int):
-    return await top_search_result(title, year)
+    result = await top_search_result(title, year)
+    if result is None:
+        return Response(status_code=HTTP_204_NO_CONTENT)
+
+    return result
 
 
 @app.get("/healthz")

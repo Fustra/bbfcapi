@@ -31,6 +31,10 @@ async function call()
 call();
 ```
 
+* HTTP 204 is returned when there is no film found.
+* Browse documentation @ <http://127.0.0.1:8000/redoc>
+* Or, browse documentation @ <http://127.0.0.1:8000/docs>
+
 ## High-Level Python Library
 
 To use the library to get results from BBFC *asynchronously*:
