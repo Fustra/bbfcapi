@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from bbfcapi.client import search
-from bbfcapi.parser import top_search_result
+from bbfcapi.lib import top_search_result
 from bbfcapi.types import Film
 
 app = FastAPI()
@@ -18,10 +17,7 @@ app.add_middleware(
 
 @app.get("/", response_model=Film)
 async def root(title: str, year: int):
-    # TODO: Handle no films found for that year
-    # TODO: Year optional?
-    page = await search(title, year)
-    return top_search_result(page)
+    return await top_search_result(title, year)
 
 
 @app.get("/healthz")

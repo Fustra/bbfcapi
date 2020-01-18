@@ -55,6 +55,13 @@ test:
 	poetry run pytest tests
 
 
+##     test:	Run live integration tests.
+.PHONY: test-live
+test-live:
+	@echo -e "${COLOR_BLUE}=== Pytest (inc. live integration tests) ===\n${NO_COLOR}"
+	poetry run pytest --run-live tests
+
+
 ##
 ##Run make with VERBOSE=1 for additional output.
 $(VERBOSE).SILENT:

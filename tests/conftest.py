@@ -6,6 +6,25 @@ from aioresponses import aioresponses
 from bbfcapi.client import search_url
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--run-live",
+        action="store_true",
+        default=False,
+        help="run live integration tests",
+    )
+
+
+def pytest_collection_modifyitems(config, items):
+    if config.getoption("--run-live"):
+        return
+
+    skip_live = pytest.mark.skip(reason="need --run-live option to run")
+    for item in items:
+        if "live" in item.keywords:
+            item.add_marker(skip_live)
+
+
 @pytest.fixture
 def data_search_interstellar():
     return (Path(__file__) / "../data/search_interstellar.html").resolve().read_bytes()
