@@ -4,22 +4,20 @@ Web API and Python library for [BBFC](https://bbfc.co.uk/).
 
 ## High-Level REST Web API
 
-To use the REST API to query BBFC:
+To use the REST API to query BBFC, first run the web server:
 
 ```console
 $ uvicorn bbfcapi.apiweb:app
 ```
 
-```
+Then, to query the API using `curl`:
+
+```console
 $ curl "127.0.0.1:8000?title=interstellar&year=2014"
 {"title":"INTERSTELLAR","year":2014,"age_rating":"12"}
 ```
 
-To use the REST API from a web page:
-
-```console
-$ uvicorn bbfcapi.apiweb:app
-```
+Or, to query the API from another web page:
 
 ```js
 async function call()
@@ -31,9 +29,11 @@ async function call()
 call();
 ```
 
-* HTTP 204 is returned when there is no film found.
-* Browse documentation @ <http://127.0.0.1:8000/redoc>
-* Or, browse documentation @ <http://127.0.0.1:8000/docs>
+Additional notes:
+
+* HTTP 204 No Content is returned when there is no film found.
+* Browse documentation @ <http://127.0.0.1:8000/redoc>.
+* Or, browse documentation @ <http://127.0.0.1:8000/docs>.
 
 ## High-Level Python Library
 
