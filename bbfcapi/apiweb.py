@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from bbfcapi.lib import top_search_result
+from bbfcapi.apilib import top_search_result
 from bbfcapi.types import Film
 
 app = FastAPI()

@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 from bbfcapi.types import AgeRating, Film
 
 
-def top_search_result(content: bytes) -> Optional[Film]:
+def parse_top_search_result(content: bytes) -> Optional[Film]:
     soup = BeautifulSoup(content, "html.parser")
     return Film(
         title=soup.select_one("h3.title > a").string.strip(),

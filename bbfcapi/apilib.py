@@ -1,5 +1,5 @@
 from bbfcapi.client import search
-from bbfcapi.parser import top_search_result as parse_top_search_result
+from bbfcapi.parser import parse_top_search_result
 from bbfcapi.types import Film
 
 

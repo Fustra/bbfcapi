@@ -2,10 +2,12 @@
 
 Web API and Python library for [BBFC](https://bbfc.co.uk/).
 
+## High-Level REST Web API
+
 To use the REST API to query BBFC:
 
 ```console
-$ uvicorn bbfcapi.api:app
+$ uvicorn bbfcapi.apiweb:app
 ```
 
 ```
@@ -16,7 +18,7 @@ $ curl "127.0.0.1:8000?title=interstellar&year=2014"
 To use the REST API from a web page:
 
 ```console
-$ uvicorn bbfcapi.api:app
+$ uvicorn bbfcapi.apiweb:app
 ```
 
 ```js
@@ -29,20 +31,24 @@ async function call()
 call();
 ```
 
+## High-Level Python Library
+
 To use the library to get results from BBFC *asynchronously*:
 
 ```py
-from bbfcapi import lib
-print(await lib.top_search_result(title="interstellar", year=2014))
+from bbfcapi.apilib import top_search_result
+print(await top_search_result(title="interstellar", year=2014))
 ```
 
 To use the library to get results from BBFC *synchronously*:
 
 ```py
 import asyncio
-from bbfcapi import lib
-print(asyncio.run(lib.top_search_result(title="interstellar", year=2014)))
+from bbfcapi.apilib import top_search_result
+print(asyncio.run(top_search_result(title="interstellar", year=2014)))
 ```
+
+## Low-Level Python Library
 
 To use the library to get raw HTML pages from BBFC *asynchronously*:
 
@@ -63,13 +69,13 @@ To use the library to parse raw HTML pages from BBFC:
 
 ```py
 from bbfcapi import parser
-print(parser.top_search_result(b"<BBFC search page byte-string>"))
+print(parser.parse_top_search_result(b"<BBFC search page byte-string>"))
 ```
 
 ## Development
 
 1. `poetry install` to set up the virtualenv (one-off)
-2. `poetry run uvicorn bbfcapi.api:app --reload` to run the web server
+2. `poetry run uvicorn bbfcapi.apiweb:app --reload` to run the web server
 3. `make fix`, `make check`, and `make test` before committing
 
 There is also `make test-live` which will run live integration tests against
