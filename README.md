@@ -103,6 +103,10 @@ To publish to the test repository:
 
 ## Changelog
 
+### Unreleased
+
+- Fix parsing 12A age ratings
+
 ### v1.0.0 - 2020-01-19
 
 - First release of bbfcapi

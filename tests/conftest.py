@@ -31,6 +31,11 @@ def data_search_interstellar():
 
 
 @pytest.fixture
+def data_search_12a():
+    return (Path(__file__) / "../data/search_12a.html").resolve().read_bytes()
+
+
+@pytest.fixture
 def data_search_no_results():
     return (Path(__file__) / "../data/search_no_results.html").resolve().read_bytes()
 

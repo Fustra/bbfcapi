@@ -23,5 +23,6 @@ def parse_top_search_result(content: bytes) -> Optional[Film]:
             .attrs["src"]
             .partition("BBFC%20")[2]
             .partition("_")[0]
+            .rstrip("A")  # Remove suffix from "12A"
         ),
     )
