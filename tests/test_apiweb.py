@@ -19,8 +19,8 @@ def test_root_returns_http_200_with_a_result(mock_search_interstellar):
 
 def test_root_returns_http_204_with_no_results(mock_search_no_results):
     response = test_client().get("/?title=no-film&year=1900")
-    assert response.status_code == 204
-    assert response.content == b""
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Film not found"}
 
 
 def test_root_returns_cors_headers(mock_search_interstellar):

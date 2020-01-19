@@ -31,7 +31,7 @@ call();
 
 Additional notes:
 
-* HTTP 204 No Content is returned when there is no film found.
+* HTTP 404 Not Found is returned when there is no film found.
 * Browse documentation @ <http://127.0.0.1:8000/redoc>.
 * Or, browse documentation @ <http://127.0.0.1:8000/docs>.
 

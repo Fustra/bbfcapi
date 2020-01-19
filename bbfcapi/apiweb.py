@@ -1,7 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from starlette.middleware.cors import CORSMiddleware
-from starlette.responses import Response
-from starlette.status import HTTP_204_NO_CONTENT
+from starlette.status import HTTP_404_NOT_FOUND
 
 from bbfcapi.apilib import top_search_result
 from bbfcapi.types import Film
@@ -17,11 +16,11 @@ app.add_middleware(
 )
 
 
-@app.get("/", response_model=Film)
+@app.get("/", response_model=Film, responses={404: {"model": None}})
 async def root(title: str, year: int):
     result = await top_search_result(title, year)
     if result is None:
-        return Response(status_code=HTTP_204_NO_CONTENT)
+        raise HTTPException(status_code=HTTP_404_NOT_FOUND, detail="Film not found")
 
     return result
 
