@@ -88,3 +88,21 @@ the BBFC website.
 ### Contributing
 
 Pull requests are welcome :)
+
+### Publishing
+
+This application is published on PyPi.
+
+1. Ensure you have configured the PyPi repository with Poetry (one-off)
+2. Run `make release` to execute the check-list
+
+To publish to the test repository:
+
+1. Ensure you have configured the Test PyPi repository with Poetry (one-off)
+2. `poetry publish --build -r testpypi` to upload to the test repository
+
+## Changelog
+
+### v1.0.0 - 2020-01-19
+
+- First release of bbfcapi

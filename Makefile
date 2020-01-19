@@ -55,11 +55,40 @@ test:
 	poetry run pytest tests
 
 
-##     test:	Run live integration tests.
+##     test-live:	Run live integration tests.
 .PHONY: test-live
 test-live:
 	@echo -e "${COLOR_BLUE}=== Pytest (inc. live integration tests) ===\n${NO_COLOR}"
 	poetry run pytest --run-live tests
+
+
+##     release:	Do a release.
+.PHONY: release
+release: check test-live
+	git status
+	@echo -e "${COLOR_BLUE}\nIs your working directory empty?${NO_COLOR}"
+	@echo -e "Press any key to continue if so...\n"
+	@read -n 1 -s
+
+	@echo -e "${COLOR_BLUE}\nRun 'poetry version major/minor/patch'...${NO_COLOR}"
+	@echo -e "Press any key to continue when done...\n"
+	@read -n 1 -s
+
+	@echo -e "${COLOR_BLUE}\nUpdate the version in __init__.py and tests...${NO_COLOR}"
+	@echo -e "Press any key to continue when done...\n"
+	@read -n 1 -s
+
+	@echo -e "${COLOR_BLUE}\nUpdate the release notes in README.md...${NO_COLOR}"
+	@echo -e "Press any key to continue when done...\n"
+	@read -n 1 -s
+
+	@echo -e "${COLOR_BLUE}\nNow about to do the actual release!${NO_COLOR}"
+	@echo -e "Press any key to continue...\n"
+	@read -n 1 -s
+
+	poetry publish --build
+	git commit -am "Release $(poetry version)"
+	git push
 
 
 ##
