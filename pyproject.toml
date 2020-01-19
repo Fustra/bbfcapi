@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bbfcapi"
-version = "1.0.0"
+version = "1.0.1"
 description = "API service, library and parser for BBFC"
 homepage = "https://github.com/Fustra/bbfcapi/"
 repository = "https://github.com/Fustra/bbfcapi/"

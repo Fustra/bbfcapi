@@ -105,6 +105,10 @@ To publish to the test repository:
 
 ### Unreleased
 
+...
+
+### v1.0.1 - 2020-01-19
+
 - Fix parsing 12A age ratings
 
 ### v1.0.0 - 2020-01-19
