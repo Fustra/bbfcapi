@@ -1,8 +1,19 @@
 # BBFC API
 
+![PyPI](https://img.shields.io/pypi/v/bbfcapi)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/bbfcapi)
+![PyPI - License](https://img.shields.io/pypi/l/bbfcapi)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/fustra/bbfcapi)
+
 Web API and Python library for [BBFC](https://bbfc.co.uk/).
 
 ## Public REST API
+
+![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/bbfcapi.fustra.co.uk?publish)
+![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fbbfcapi.fustra.co.uk%2Fhealthz)
+<a href="https://uptime.statuscake.com/?TestID=SgEZQ2v2KF" title="bbfcapi uptime report">
+	<img src="https://app.statuscake.com/button/index.php?Track=K7juwHfXel&Days=7&Design=6"/>
+</a>
 
 * Hosted @ <https://bbfcapi.fustra.co.uk>
 * Documentation @ <https://bbfcapi.fustra.co.uk/redoc>
