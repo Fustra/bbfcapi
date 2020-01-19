@@ -2,6 +2,19 @@
 
 Web API and Python library for [BBFC](https://bbfc.co.uk/).
 
+## Public REST API
+
+* Hosted @ <https://bbfcapi.fustra.co.uk>
+* Documentation @ <https://bbfcapi.fustra.co.uk/redoc>
+* Alternative documentation @ <https://bbfcapi.fustra.co.uk/docs>
+
+Try it now:
+
+```console
+$ curl "https://bbfcapi.fustra.co.uk?title=interstellar&year=2014"
+{"title":"INTERSTELLAR","year":2014,"age_rating":"12"}
+```
+
 ## High-Level REST Web API
 
 To use the REST API to query BBFC, first run the web server:
@@ -34,6 +47,7 @@ Additional notes:
 * HTTP 404 Not Found is returned when there is no film found.
 * Browse documentation @ <http://127.0.0.1:8000/redoc>.
 * Or, browse documentation @ <http://127.0.0.1:8000/docs>.
+* Samples on hosting this web application are available in the repository's [/docs](/docs) folder.
 
 ## High-Level Python Library
 

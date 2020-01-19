@@ -1,0 +1,20 @@
+# Systemd service file to run bbfcapi available at a Unix socket that could, for
+# example, be used with Nginx
+#
+# Requires:
+#	1. bbfcapi user
+#	2. a virtualenv
+
+[Unit]
+Description=bbfcapi
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User=bbfcapi
+RuntimeDirectory=bbfcapi
+ExecStart=/home/bbfcapi/virtualenv/bin/uvicorn bbfcapi.apiweb:app --uds /run/bbfcapi/uvicorn.sock
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
