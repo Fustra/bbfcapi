@@ -87,7 +87,7 @@ release: check test-live
 	@read -n 1 -s
 
 	poetry publish --build
-	git commit -am "Release $(poetry version)"
+	git commit -am "Release $(shell poetry version)"
 	git push
 
 
