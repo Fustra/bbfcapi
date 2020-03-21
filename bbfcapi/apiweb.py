@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 from starlette.status import HTTP_404_NOT_FOUND
 
 from bbfcapi.apilib import top_search_result
