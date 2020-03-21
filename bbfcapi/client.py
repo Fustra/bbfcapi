@@ -1,11 +1,15 @@
 """Async client for BBFC website."""
 import logging
+import os
 
 import aiohttp
 
 logger = logging.getLogger(__name__)
 
-SEARCH_URL = "https://bbfc.co.uk/search/releases/{title}/any/any/any/any/0/any/any/any/any/{year}/any/any?advanced=true"
+
+DEFAULT_BASE_URL = "https://bbfc.co.uk"
+
+SEARCH_URL = "{base_url}/search/releases/{title}/any/any/any/any/0/any/any/any/any/{year}/any/any?advanced=true"
 
 
 async def search(title: str, year: int) -> bytes:
@@ -19,4 +23,5 @@ async def search(title: str, year: int) -> bytes:
 
 
 def search_url(title: str, year: int) -> str:
-    return SEARCH_URL.format(title=title, year=year)
+    base_url = os.environ.get("BBFC_URL", DEFAULT_BASE_URL)
+    return SEARCH_URL.format(base_url=base_url, title=title, year=year)

@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from enum import Enum, unique
 
-from pydantic import BaseModel
+from fastapi_camelcase import CamelModel
 
 
-class Film(BaseModel):
+class Film(CamelModel):
     title: str
     year: int
     age_rating: AgeRating

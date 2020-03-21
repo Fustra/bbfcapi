@@ -13,7 +13,7 @@ def test_root_returns_http_200_with_a_result(mock_search_interstellar):
     assert response.json() == {
         "title": "INTERSTELLAR",
         "year": 2014,
-        "age_rating": "12",
+        "ageRating": "12",
     }
 
 

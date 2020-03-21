@@ -14,6 +14,8 @@ aiohttp = {version = "^3.6", extras = ["speedups"]}
 beautifulsoup4 = "^4.8"
 fastapi = "^0.52"
 uvicorn = "^0.11"
+requests = {version = "^2.23", optional = true}
+fastapi_camelcase = "^0.1.4"
 
 [tool.poetry.dev-dependencies]
 # Checks
@@ -26,6 +28,9 @@ isort = "^4.3"
 pytest = "^5.0"
 pytest-asyncio = "^0.10.0"
 aioresponses = "^0.6.1"
+
+[tool.poetry.extras]
+clientwebsync = ["requests"]
 
 [tool.black]
 target-version = ["py38"]
