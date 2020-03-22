@@ -209,10 +209,11 @@ To publish to the test repository:
 
 ## Changelog
 
-### v2.0.0.dev1
+### v2.0.0 - 2020-03-22
 
-- Reorganise entire package
+- Add Python client library for the BBFCAPI REST Web API
 - Use camelCasing for JSON fields in the web API
+- Reorganise entire package
 
 ### v1.0.1 - 2020-01-19
 
