@@ -209,7 +209,7 @@ To publish to the test repository:
 
 ## Changelog
 
-### Unreleased
+### v2.0.0.dev1
 
 - Reorganise entire package
 - Use camelCasing for JSON fields in the web API
