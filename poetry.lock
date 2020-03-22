@@ -709,8 +709,8 @@ idna = ">=2.0"
 multidict = ">=4.0"
 
 [extras]
-api = ["aiohttp"]
-apis = ["requests"]
+api = ["aiohttp", "pyhumps"]
+apis = ["requests", "pyhumps"]
 app = ["uvicorn", "fastapi", "pyhumps", "aiohttp", "beautifulsoup4"]
 client = ["aiohttp"]
 clients = ["requests"]
@@ -719,7 +719,7 @@ libs = ["requests", "beautifulsoup4"]
 parser = ["beautifulsoup4"]
 
 [metadata]
-content-hash = "04122f8c2a2ca4733789f94dd34d3b098f636ae5d4f7a2b16f1f80f13cc56dd5"
+content-hash = "c7860abe3b037408a0f88b610baf3633d7293de17e50a4d45fe667596a9d93a1"
 python-versions = "^3.8"
 
 [metadata.files]
