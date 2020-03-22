@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.status import HTTP_404_NOT_FOUND
 
-from bbfcapi.apilib import top_search_result
+from bbfcapi.lib import top_search_result
 from bbfcapi.types import Film
 
 app = FastAPI()

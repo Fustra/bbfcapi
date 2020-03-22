@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bbfcapi"
-version = "1.0.1"
+version = "2.0.0.dev1"
 description = "API service, library and parser for BBFC"
 homepage = "https://github.com/Fustra/bbfcapi/"
 repository = "https://github.com/Fustra/bbfcapi/"
@@ -10,12 +10,12 @@ license = "AGPL-3.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-aiohttp = {version = "^3.6", extras = ["speedups"]}
-beautifulsoup4 = "^4.8"
-fastapi = "^0.52"
-uvicorn = "^0.11"
+aiohttp = {version = "^3.6", extras = ["speedups"], optional = true}
+beautifulsoup4 = {version = "^4.8", optional = true}
+fastapi = {version = "^0.52", optional = true}
+pyhumps = {version = "^1.3.1", optional = true}
 requests = {version = "^2.23", optional = true}
-fastapi_camelcase = "^0.1.4"
+uvicorn = {version = "^0.11", optional = true}
 
 [tool.poetry.dev-dependencies]
 # Checks
@@ -30,7 +30,13 @@ pytest-asyncio = "^0.10.0"
 aioresponses = "^0.6.1"
 
 [tool.poetry.extras]
-clientwebsync = ["requests"]
+client = ["aiohttp"]
+clients = ["requests"]
+lib = ["aiohttp", "beautifulsoup4"]
+libs = ["requests", "beautifulsoup4"]
+api = ["aiohttp"]
+apis = ["requests"]
+app = [ "uvicorn", "fastapi", "pyhumps","aiohttp", "beautifulsoup4"]
 
 [tool.black]
 target-version = ["py38"]

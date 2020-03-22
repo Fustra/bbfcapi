@@ -2,12 +2,12 @@ import os
 import socket
 import subprocess
 from pathlib import Path
-import requests
 
 import pytest
+import requests
 
 from bbfcapi import apis
-from bbfcapi.types import Film, AgeRating
+from bbfcapi.types import AgeRating, Film
 
 
 @pytest.fixture(scope="class")
@@ -16,7 +16,7 @@ def webapi_url(fake_bbfc_url):
     port = _free_port()
     url = f"http://127.0.0.1:{port}"
     with subprocess.Popen(
-        ["uvicorn", "bbfcapi.apiweb:app", "--port", str(port)],
+        ["uvicorn", "bbfcapi.app:app", "--port", str(port)],
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.PIPE,

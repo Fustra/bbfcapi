@@ -2,10 +2,23 @@ from __future__ import annotations
 
 from enum import Enum, unique
 
-from fastapi_camelcase import CamelModel
+from pydantic import BaseModel
+
+# FastAPI response serialisation - automatic camel-casing
+try:
+    from humps import camelize
+except ImportError:
+    camelize = lambda s: s
 
 
-class Film(CamelModel):
+# TODO: Fix fastapi_camelcase dependencies and use that library instead
+class _CamelModel(BaseModel):
+    class Config:
+        alias_generator = camelize
+        allow_population_by_field_name = True
+
+
+class Film(_CamelModel):
     title: str
     year: int
     age_rating: AgeRating

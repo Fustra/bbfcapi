@@ -1,4 +1,7 @@
-"""Synchronous Client for a hosted BBFCAPI."""
+"""Synchronous high-level Python client for a hosted BBFCAPI app.
+
+By default it will query bbfcapi.fustra.co.uk, but you can self-host the app.
+"""
 
 from typing import Optional
 

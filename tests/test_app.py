@@ -1,6 +1,6 @@
 from starlette.testclient import TestClient
 
-from bbfcapi.apiweb import app
+from bbfcapi.app import app
 
 
 def test_client():

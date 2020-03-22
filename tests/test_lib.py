@@ -1,6 +1,6 @@
 import pytest
 
-from bbfcapi.apilib import top_search_result
+from bbfcapi.lib import top_search_result
 from bbfcapi.types import AgeRating, Film
 
 

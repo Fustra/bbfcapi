@@ -1,4 +1,7 @@
-"""Async client for BBFC website."""
+"""Asynchronous low-level network client for the BBFC website.
+
+You probably want lib.py.
+"""
 import logging
 import os
 

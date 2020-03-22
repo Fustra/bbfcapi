@@ -1,4 +1,4 @@
-"""Parser for BBFC webpages."""
+"""HTML Parser for the BBFC web-pages."""
 from typing import Optional
 
 from bs4 import BeautifulSoup

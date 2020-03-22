@@ -1,3 +1,5 @@
+"""Asynchronous Python client library for the BBFC website."""
+
 from bbfcapi.client import search
 from bbfcapi.parser import parse_top_search_result
 from bbfcapi.types import Film
