@@ -72,7 +72,7 @@ release: check test-live
 	@echo -e "${COLOR_BLUE}\n\nRun 'poetry version major/minor/patch'...${NO_COLOR}"
 	@read -p "Press any key to continue when done..." -n1 -s
 
-	@echo -e "${COLOR_BLUE}\n\nUpdate the version in __init__.py and tests...${NO_COLOR}"
+	@echo -e "${COLOR_BLUE}\n\nUpdate the version in __init__.py and test_bbfcapi.py...${NO_COLOR}"
 	@read -p "Press any key to continue when done..." -n1 -s
 
 	@echo -e "${COLOR_BLUE}\n\nUpdate the release notes in README.md...${NO_COLOR}"
