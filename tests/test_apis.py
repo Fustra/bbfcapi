@@ -5,13 +5,14 @@ from pathlib import Path
 
 import pytest
 import requests
+import responses
 
 from bbfcapi import apis
 from bbfcapi.types import AgeRating, Film
 
 
 @pytest.fixture(scope="class")
-def webapi_url(fake_bbfc_url):
+def app_url(fake_bbfc_url):
     """Start the actual web app in a separate process."""
     port = _free_port()
     url = f"http://127.0.0.1:{port}"
@@ -63,6 +64,12 @@ def fake_bbfc_url():
         proc.terminate()
 
 
+@pytest.fixture
+def mock_responses():
+    with responses.RequestsMock() as rsps:
+        yield rsps
+
+
 def _free_port():
     """Return a port number that is free to be used."""
     with socket.socket() as s:
@@ -70,10 +77,48 @@ def _free_port():
         return s.getsockname()[1]
 
 
-def test_integration_healthz_okay(webapi_url):
-    assert apis.healthz(base_url=webapi_url)
+def test_integration_healthz_okay(app_url):
+    assert apis.healthz(base_url=app_url)
 
 
-def test_integration_top_search_result(webapi_url):
-    actual = apis.top_search_result("Interstellar", 2014, base_url=webapi_url)
+def test_integration_top_search_result(app_url):
+    actual = apis.top_search_result("Interstellar", 2014, base_url=app_url)
     assert actual == Film(title="INTERSTELLAR", year=2014, age_rating=AgeRating.AGE_12)
+
+
+def test_top_search_result_404_response_returns_no_film(mock_responses):
+    mock_responses.add(
+        responses.GET,
+        apis.DEFAULT_BASE_URL,
+        body="{}",
+        status=404,
+        content_type="application/json",
+    )
+
+    assert apis.top_search_result("interstellar", 2014) is None
+
+
+def test_top_search_result_raises_request_exceptions(mock_responses):
+    mock_responses.add(
+        responses.GET,
+        apis.DEFAULT_BASE_URL,
+        body="{}",
+        status=500,
+        content_type="application/json",
+    )
+
+    with pytest.raises(requests.HTTPError) as err:
+        apis.top_search_result("interstellar", 2014)
+
+    assert err.value.response.status_code == 500
+
+
+def test_healthz_500_error(mock_responses):
+    mock_responses.add(
+        responses.GET,
+        f"{apis.DEFAULT_BASE_URL}/healthz",
+        body="{}",
+        status=500,
+        content_type="application/json",
+    )
+    assert not apis.healthz()
