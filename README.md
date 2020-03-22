@@ -174,7 +174,7 @@ print(asyncio.run(search(title="interstellar", year=2014)))
 To use the library to parse raw HTML pages from BBFC:
 
 ```console
-$ pip install bbfcapi`
+$ pip install bbfcapi[parser]`
 ```
 
 ```py
@@ -208,6 +208,14 @@ To publish to the test repository:
 2. `poetry publish --build -r testpypi` to upload to the test repository
 
 ## Changelog
+
+### Unpublished
+
+...
+
+### v2.0.1 - 2020-03-22
+
+- Fix missing dependencies
 
 ### v2.0.0 - 2020-03-22
 

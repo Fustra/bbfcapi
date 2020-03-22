@@ -13,6 +13,7 @@ python = "^3.8"
 aiohttp = {version = "^3.6", extras = ["speedups"], optional = true}
 beautifulsoup4 = {version = "^4.8", optional = true}
 fastapi = {version = "^0.52", optional = true}
+pydantic = "^1.4"
 pyhumps = {version = "^1.3.1", optional = true}
 requests = {version = "^2.23", optional = true}
 uvicorn = {version = "^0.11", optional = true}
@@ -33,6 +34,7 @@ responses = "^0.10.12"
 [tool.poetry.extras]
 client = ["aiohttp"]
 clients = ["requests"]
+parser = ["beautifulsoup4"]
 lib = ["aiohttp", "beautifulsoup4"]
 libs = ["requests", "beautifulsoup4"]
 api = ["aiohttp"]

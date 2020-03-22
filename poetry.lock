@@ -421,7 +421,7 @@ version = "2.20"
 category = "main"
 description = "Data validation and settings management using python 3.6 type hinting"
 name = "pydantic"
-optional = true
+optional = false
 python-versions = ">=3.6"
 version = "1.4"
 
@@ -716,9 +716,10 @@ client = ["aiohttp"]
 clients = ["requests"]
 lib = ["aiohttp", "beautifulsoup4"]
 libs = ["requests", "beautifulsoup4"]
+parser = ["beautifulsoup4"]
 
 [metadata]
-content-hash = "0f0c0f8bb1fda9fa2b05ac4d0ed67b9d1fe0f7fccf7cca493f8e85055e733861"
+content-hash = "04122f8c2a2ca4733789f94dd34d3b098f636ae5d4f7a2b16f1f80f13cc56dd5"
 python-versions = "^3.8"
 
 [metadata.files]
