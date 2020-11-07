@@ -184,7 +184,7 @@ print(parser.parse_top_search_result(b"<BBFC search page byte-string>"))
 
 ## Development
 
-1. `poetry install` to set up the virtualenv (one-off)
+1. `poetry install -E all` to set up the virtualenv (one-off)
 2. `poetry run uvicorn bbfcapi.apiweb:app --reload` to run the web server
 3. `make fix`, `make check`, and `make test` before committing
 
