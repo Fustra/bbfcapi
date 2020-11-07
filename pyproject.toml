@@ -20,16 +20,16 @@ uvicorn = {version = "^0.11", optional = true}
 
 [tool.poetry.dev-dependencies]
 # Checks
-pyflakes = "^2.1"
-bandit = "^1.6"
-safety = "^1.8"
-black = {version = "=19.10b0", allow-prereleases = true}
-isort = "^4.3"
+pyflakes = "^2.2.0"
+bandit = "^1.6.2"
+safety = "^1.9.0"
+black = {version = "=20.8b1", allow-prereleases = true}
+isort = "^5.6.4"
 # Tests
-pytest = "^5.0"
-pytest-asyncio = "^0.10.0"
-aioresponses = "^0.6.1"
-responses = "^0.10.12"
+pytest = "^6.1.2"
+pytest-asyncio = "^0.14.0"
+aioresponses = "^0.7.1"
+responses = "^0.12.0"
 
 [tool.poetry.extras]
 client = ["aiohttp"]

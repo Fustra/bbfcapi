@@ -25,7 +25,7 @@ fix:
 	poetry run black bbfcapi tests
 
 	@echo -e "${COLOR_BLUE}\n=== isort ===\n${NO_COLOR}"
-	poetry run isort --recursive bbfcapi tests
+	poetry run isort bbfcapi tests
 
 
 ##     check:	Run basic checks.
@@ -47,7 +47,7 @@ check:
 	poetry run black --quiet --check bbfcapi tests
 
 	@echo -e "${COLOR_BLUE}\n=== Style: isort ===\n${NO_COLOR}"
-	poetry run isort --check --recursive bbfcapi tests
+	poetry run isort --check bbfcapi tests
 
 	@echo -e "${COLOR_GREEN}\nAll Good!${NO_COLOR}"
 
