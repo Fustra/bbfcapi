@@ -211,7 +211,7 @@ To publish to the test repository:
 
 ### Unpublished
 
-...
+- Update various dependencies
 
 ### v2.0.2 - 2020-03-22
 
