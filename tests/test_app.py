@@ -8,16 +8,15 @@ def test_client():
 
 
 def test_root_returns_http_200_with_a_result(mock_search_interstellar):
-    response = test_client().get("/?title=interstellar&year=2014")
+    response = test_client().get("/?title=interstellar")
     assert response.status_code == 200
     assert response.json() == {
-        "title": "INTERSTELLAR",
-        "year": 2014,
+        "title": "Interstellar",
         "ageRating": "12",
     }
 
 
-def test_root_returns_http_204_with_no_results(mock_search_no_results):
+def test_root_returns_http_204_with_no_results(mock_search_no_film):
     response = test_client().get("/?title=no-film&year=1900")
     assert response.status_code == 404
     assert response.json() == {"detail": "Film not found"}

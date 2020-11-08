@@ -7,7 +7,7 @@ import pytest
 import requests
 import responses
 
-from bbfcapi import apis
+from bbfcapi.api_sync import DEFAULT_BASE_URL, best_match, healthz
 from bbfcapi.types import AgeRating, Film
 
 
@@ -41,7 +41,7 @@ def fake_bbfc_url():
     """Start a mock BBFC server that always returns the same response."""
     exe = str(Path(__file__).parent / "fake_bbfc.py")
     port = _free_port()
-    filename = "search_interstellar.html"
+    filename = "search_interstellar.json"
     url = f"http://127.0.0.1:{port}"
     with subprocess.Popen(
         [exe, str(port), filename],
@@ -78,37 +78,37 @@ def _free_port():
 
 
 def test_integration_healthz_okay(app_url):
-    assert apis.healthz(base_url=app_url)
+    assert healthz(base_url=app_url)
 
 
-def test_integration_top_search_result(app_url):
-    actual = apis.top_search_result("Interstellar", 2014, base_url=app_url)
-    assert actual == Film(title="INTERSTELLAR", year=2014, age_rating=AgeRating.AGE_12)
+def test_integration_best_match(app_url):
+    actual = best_match("Interstellar", base_url=app_url)
+    assert actual == Film(title="Interstellar", age_rating=AgeRating.AGE_12)
 
 
-def test_top_search_result_404_response_returns_no_film(mock_responses):
+def test_best_match_404_response_returns_no_film(mock_responses):
     mock_responses.add(
         responses.GET,
-        apis.DEFAULT_BASE_URL,
+        DEFAULT_BASE_URL,
         body="{}",
         status=404,
         content_type="application/json",
     )
 
-    assert apis.top_search_result("interstellar", 2014) is None
+    assert best_match("interstellar") is None
 
 
-def test_top_search_result_raises_request_exceptions(mock_responses):
+def test_best_match_raises_request_exceptions(mock_responses):
     mock_responses.add(
         responses.GET,
-        apis.DEFAULT_BASE_URL,
+        DEFAULT_BASE_URL,
         body="{}",
         status=500,
         content_type="application/json",
     )
 
     with pytest.raises(requests.HTTPError) as err:
-        apis.top_search_result("interstellar", 2014)
+        best_match("interstellar")
 
     assert err.value.response.status_code == 500
 
@@ -116,9 +116,9 @@ def test_top_search_result_raises_request_exceptions(mock_responses):
 def test_healthz_500_error(mock_responses):
     mock_responses.add(
         responses.GET,
-        f"{apis.DEFAULT_BASE_URL}/healthz",
+        f"{DEFAULT_BASE_URL}/healthz",
         body="{}",
         status=500,
         content_type="application/json",
     )
-    assert not apis.healthz()
+    assert not healthz()

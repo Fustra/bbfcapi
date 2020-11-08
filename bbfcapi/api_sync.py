@@ -14,10 +14,8 @@ from bbfcapi.types import Film
 DEFAULT_BASE_URL = "https://bbfcapi.fustra.co.uk"
 
 
-def top_search_result(
-    title: str, year: int, base_url: str = DEFAULT_BASE_URL
-) -> Optional[Film]:
-    response = requests.get(f"{base_url}/", params={"title": title, "year": year})
+def best_match(title: str, base_url: str = DEFAULT_BASE_URL) -> Optional[Film]:
+    response = requests.get(f"{base_url}/", params={"title": title})
     if response.ok:
         return Film.parse_raw(
             response.content, content_type=response.headers["Content-Type"]

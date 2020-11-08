@@ -1,0 +1,24 @@
+{
+  "data": {
+    "autocomplete": {
+      "results": [
+        {
+          "classification": "15",
+          "title": "Interstellar Wars",
+          "type": "release",
+          "releaseDate": "2016-07-07T00:00:00.000Z",
+          "shortFormInsight": "strong violence, gore",
+          "slug": "interstellar-wars-q29sbgvjdglvbjpwwc00mzi4mzg"
+        },
+        {
+          "classification": "12",
+          "title": "Interstellar",
+          "type": "release",
+          "releaseDate": "2015-01-30T00:00:00.000Z",
+          "shortFormInsight": "infrequent strong language, moderate threat, violence",
+          "slug": "interstellar-q29sbgvjdglvbjpwwc0zode4nzi"
+        }
+      ]
+    }
+  }
+}

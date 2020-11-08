@@ -1,9 +1,10 @@
+import json
 from pathlib import Path
 
 import pytest
 from aioresponses import aioresponses
 
-from bbfcapi.client import search_url
+from bbfcapi.client_common import graphql_url
 
 
 def pytest_addoption(parser):
@@ -26,18 +27,24 @@ def pytest_collection_modifyitems(config, items):
 
 
 @pytest.fixture
-def data_search_interstellar():
-    return (Path(__file__) / "../data/search_interstellar.html").resolve().read_bytes()
+def search_a_silent_voice_json():
+    return json.loads(
+        (Path(__file__) / "../data/search_a_silent_voice.json").resolve().read_text()
+    )
 
 
 @pytest.fixture
-def data_search_12a():
-    return (Path(__file__) / "../data/search_12a.html").resolve().read_bytes()
+def search_interstellar_json():
+    return json.loads(
+        (Path(__file__) / "../data/search_interstellar.json").resolve().read_text()
+    )
 
 
 @pytest.fixture
-def data_search_no_results():
-    return (Path(__file__) / "../data/search_no_results.html").resolve().read_bytes()
+def search_no_film_json():
+    return json.loads(
+        (Path(__file__) / "../data/search_no_film.json").resolve().read_text()
+    )
 
 
 @pytest.fixture
@@ -47,12 +54,10 @@ def mock_aioresponses():
 
 
 @pytest.fixture
-def mock_search_interstellar(data_search_interstellar, mock_aioresponses):
-    mock_aioresponses.get(
-        search_url("interstellar", 2014), body=data_search_interstellar
-    )
+def mock_search_interstellar(search_interstellar_json, mock_aioresponses):
+    mock_aioresponses.post(graphql_url, payload=search_interstellar_json)
 
 
 @pytest.fixture
-def mock_search_no_results(data_search_no_results, mock_aioresponses):
-    mock_aioresponses.get(search_url("no-film", 1900), body=data_search_no_results)
+def mock_search_no_film(search_no_film_json, mock_aioresponses):
+    mock_aioresponses.post(graphql_url, payload=search_no_film_json)

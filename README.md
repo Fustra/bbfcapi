@@ -22,20 +22,20 @@ Web API and Python library for [BBFC](https://bbfc.co.uk/).
 Try it now:
 
 ```console
-$ curl "https://bbfcapi.fustra.co.uk?title=interstellar&year=2014"
-{"title":"INTERSTELLAR","year":2014,"ageRating":"12"}
+$ curl "https://bbfcapi.fustra.co.uk?title=interstellar"
+{"title":"Interstellar","ageRating":"12"}
 ```
 
 Use the Python client:
 
 ```console
-$ pip install bbfcapi[apis]
+$ pip install bbfcapi[api_sync]
 ```
 
 ```py
->>> from bbfcapi.apis import top_search_result
->>> top_search_result("interstellar", 2014)
-Film(title='INTERSTELLAR', year=2014, age_rating=<AgeRating.AGE_12: '12'>)
+>>> from bbfcapi.api_sync import best_match
+>>> best_match("interstellar", 2014)
+Film(title='INTERSTELLAR', age_rating=<AgeRating.AGE_12: '12'>)
 ```
 
 ## Project Overview
@@ -47,16 +47,16 @@ The project is divided into:
     * `pip install bbfcapi[app]`
 * "I want a Python library to talk to the REST API as demoed above"
     * Python client for BBFCAPI
-    * `pip install bbfcapi[api]` (async variant)
-    * `pip install bbfcapi[apis]` (sync variant)
+    * `pip install bbfcapi[api_async]` (async variant)
+    * `pip install bbfcapi[api_sync]` (sync variant)
 * "I want a Python library to talk to the BBFC website"
     * Python library for the BBFC website
-    * `pip install bbfcapi[lib]` (async variant)
-    * `pip install bbfcapi[libs]` (sync variant)
+    * `pip install bbfcapi[lib_async]` (async variant)
+    * `pip install bbfcapi[lib_sync]` (sync variant)
 * "I want to download the raw HTML web pages from BBFC"
     * Python network client for the BBFC website
-    * `pip install bbfcapi[client]` (async variant)
-    * `pip install bbfcapi[clients]` (sync variant)
+    * `pip install bbfcapi[client_async]` (async variant)
+    * `pip install bbfcapi[client_sync]` (sync variant)
 * "I want to parse the downloaded web pages from BBFC"
     * Python HMTL parser for the BBFC web pages
     * `pip install bbfcapi`
@@ -76,28 +76,28 @@ $ uvicorn bbfcapi.app:app
 Then, to query the API using the Python library *synchronously*:
 
 ```py
-from bbfcapi.apis import top_search_result
-top_search_result("interstellar", 2014, base_url="http://127.0.0.1:8000")
+from bbfcapi.api_sync import best_match
+best_match("interstellar", base_url="http://127.0.0.1:8000")
 ```
 
 Or, to query the API using the Python library *asynchronously*:
 
 ```py
-from bbfcapi.api import top_search_result
-print(await top_search_result("interstellar", 2014, base_url="http://127.0.0.1:8000"))
+from bbfcapi.api_async import best_match
+print(await best_match("interstellar", base_url="http://127.0.0.1:8000"))
 ```
 
 ```py
 import asyncio
-from bbfcapi.api import top_search_result
-print(asyncio.run(top_search_result("interstellar", 2014, base_url="http://127.0.0.1:8000")))
+from bbfcapi.api_async import best_match
+print(asyncio.run(best_match("interstellar", base_url="http://127.0.0.1:8000")))
 ```
 
 Or, to query the API using `curl`:
 
 ```console
-$ curl "127.0.0.1:8000?title=interstellar&year=2014"
-{"title":"INTERSTELLAR","year":2014,"age_rating":"12"}
+$ curl "127.0.0.1:8000?title=interstellar"
+{"title":"Interstellar",age_rating":"12"}
 ```
 
 Or, to query the API from another web page:
@@ -105,7 +105,7 @@ Or, to query the API from another web page:
 ```js
 async function call()
 {
-    const response = await fetch('http://127.0.0.1:8000/?title=interstellar&year=2014');
+    const response = await fetch('http://127.0.0.1:8000/?title=interstellar');
     const responseJson = await response.json();
     console.log(JSON.stringify(responseJson));
 }
@@ -124,21 +124,21 @@ Additional notes:
 To use the library to get results from BBFC *synchronously*:
 
 ```py
-from bbfcapi.lib import top_search_result
-print(top_search_result(title="interstellar", year=2014))
+from bbfcapi.lib_async import best_match
+print(best_match(title="interstellar"))
 ```
 
 To use the library to get results from BBFC *asynchronously*:
 
 ```py
-from bbfcapi.lib import top_search_result
-print(await top_search_result(title="interstellar", year=2014))
+from bbfcapi.lib_async import best_match
+print(await best_match(title="interstellar"))
 ```
 
 ```py
 import asyncio
-from bbfcapi.lib import top_search_result
-print(asyncio.run(top_search_result(title="interstellar", year=2014)))
+from bbfcapi.lib_async import best_match
+print(asyncio.run(best_match(title="interstellar")))
 ```
 
 ## Low-Level BBFC Network Client & Parser
@@ -146,32 +146,32 @@ print(asyncio.run(top_search_result(title="interstellar", year=2014)))
 To use the library to get raw HTML pages from BBFC *synchronously*:
 
 ```console
-$ pip install bbfcapi[clients]`
+$ pip install bbfcapi[client_sync]`
 ```
 
 ```py
-from bbfcapi.clients import search
-print(search(title="interstellar", year=2014))
+from bbfcapi.client_sync import search
+print(search(title="interstellar"))
 ```
 
 To use the library to get raw HTML pages from BBFC *asynchronously*:
 
 ```console
-$ pip install bbfcapi[client]`
+$ pip install bbfcapi[client_async]`
 ```
 
 ```py
-from bbfcapi.client import search
-print(await search(title="interstellar", year=2014))
+from bbfcapi.client_async import search
+print(await search(title="interstellar"))
 ```
 
 ```py
 import asyncio
-from bbfcapi.client import search
-print(asyncio.run(search(title="interstellar", year=2014)))
+from bbfcapi.client_async import search
+print(asyncio.run(search(title="interstellar")))
 ```
 
-To use the library to parse raw HTML pages from BBFC:
+To use the library to parse results from BBFC's GraphQL API:
 
 ```console
 $ pip install bbfcapi[parser]`
@@ -179,7 +179,7 @@ $ pip install bbfcapi[parser]`
 
 ```py
 from bbfcapi import parser
-print(parser.parse_top_search_result(b"<BBFC search page byte-string>"))
+print(parser.best_autocomplete_match({"BBFC": "...graphql json..."}))
 ```
 
 ## Development
@@ -211,6 +211,7 @@ To publish to the test repository:
 
 ### Unpublished
 
+- IMPORTANT: Major changes for compatibility with BBFC's new website
 - Update various dependencies
 
 ### v2.0.2 - 2020-03-22

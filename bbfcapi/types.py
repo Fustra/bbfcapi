@@ -20,7 +20,6 @@ class _CamelModel(BaseModel):
 
 class Film(_CamelModel):
     title: str
-    year: int
     age_rating: AgeRating
 
 

@@ -1,19 +1,17 @@
-from bbfcapi.parser import parse_top_search_result
+from bbfcapi.parser import best_autocomplete_match
 from bbfcapi.types import AgeRating, Film
 
 
-def test_parse_top_search_result(data_search_interstellar):
-    result = parse_top_search_result(data_search_interstellar)
-    assert result == Film(title="INTERSTELLAR", year=2014, age_rating=AgeRating.AGE_12)
+def test_best_autocomplete_match_with_multiple_results(search_interstellar_json):
+    result = best_autocomplete_match(search_interstellar_json, title="Interstellar")
+    assert result == Film(title="Interstellar", age_rating=AgeRating.AGE_12)
 
 
-def test_parse_top_search_result_with_12a_rating(data_search_12a):
-    result = parse_top_search_result(data_search_12a)
-    assert result == Film(
-        title="A SILENT VOICE", year=2016, age_rating=AgeRating.AGE_12
-    )
+def test_best_autocomplete_match_with_one_result(search_a_silent_voice_json):
+    result = best_autocomplete_match(search_a_silent_voice_json, title="A Silent Voice")
+    assert result == Film(title="A Silent Voice", age_rating=AgeRating.AGE_12)
 
 
-def test_parse_top_search_result_with_no_results(data_search_no_results):
-    result = parse_top_search_result(data_search_no_results)
+def test_best_autocomplete_match_with_no_results(search_no_film_json):
+    result = best_autocomplete_match(search_no_film_json, "no-film")
     assert result is None
