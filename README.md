@@ -211,6 +211,10 @@ To publish to the test repository:
 
 ### Unpublished
 
+...
+
+### v3.0.0 - 2020-11-08
+
 - IMPORTANT: Major changes for compatibility with BBFC's new website
 - Update various dependencies
 
