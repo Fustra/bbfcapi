@@ -211,6 +211,10 @@ To publish to the test repository:
 
 ### Unpublished
 
+...
+
+### v3.0.1 - 2021-03-04
+
 - Change primary host to bbfcapi.fustra.uk
 - [Security] Upgrade dependencies
 
