@@ -1,6 +1,6 @@
 """Synchronous high-level Python client for a hosted BBFCAPI app.
 
-By default it will query bbfcapi.fustra.co.uk, but you can self-host the app.
+By default it will query bbfcapi.fustra.uk, but you can self-host the app.
 
 This will raise exceptions from the requests library.
 """
@@ -11,7 +11,7 @@ import requests
 
 from bbfcapi.types import Film
 
-DEFAULT_BASE_URL = "https://bbfcapi.fustra.co.uk"
+DEFAULT_BASE_URL = "https://bbfcapi.fustra.uk"
 
 
 def best_match(title: str, base_url: str = DEFAULT_BASE_URL) -> Optional[Film]:

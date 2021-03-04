@@ -9,20 +9,20 @@ Web API and Python library for [BBFC](https://bbfc.co.uk/).
 
 ## Public REST API
 
-![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/bbfcapi.fustra.co.uk?publish)
-![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fbbfcapi.fustra.co.uk%2Fhealthz)
+![Mozilla HTTP Observatory Grade](https://img.shields.io/mozilla-observatory/grade-score/bbfcapi.fustra.uk?publish)
+![Security Headers](https://img.shields.io/security-headers?url=https%3A%2F%2Fbbfcapi.fustra.uk%2Fhealthz)
 <a href="https://uptime.statuscake.com/?TestID=SgEZQ2v2KF" title="bbfcapi uptime report">
     <img src="https://app.statuscake.com/button/index.php?Track=K7juwHfXel&Days=7&Design=6"/>
 </a>
 
-* Hosted @ <https://bbfcapi.fustra.co.uk>
-* Documentation @ <https://bbfcapi.fustra.co.uk/redoc>
-* Alternative documentation @ <https://bbfcapi.fustra.co.uk/docs>
+* Hosted @ <https://bbfcapi.fustra.uk>
+* Documentation @ <https://bbfcapi.fustra.uk/redoc>
+* Alternative documentation @ <https://bbfcapi.fustra.uk/docs>
 
 Try it now:
 
 ```console
-$ curl "https://bbfcapi.fustra.co.uk?title=interstellar"
+$ curl "https://bbfcapi.fustra.uk?title=interstellar"
 {"title":"Interstellar","ageRating":"12"}
 ```
 
@@ -211,7 +211,7 @@ To publish to the test repository:
 
 ### Unpublished
 
-...
+- Change primary host to bbfcapi.fustra.uk
 
 ### v3.0.0 - 2020-11-08
 
